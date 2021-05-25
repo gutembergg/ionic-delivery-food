@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
 		freeMode: true
 	}
 
+	showLocationDetail = false
+
 	constructor(private _productsService: ProductsService) {}
 
 	ngOnInit(): void {
@@ -54,5 +56,10 @@ export class HomeComponent implements OnInit {
 			$event.target.complete()
 		}, 2000)
 		console.log("event: ", $event)
+	}
+
+	onScroll($event) {
+		const offset = $event.detail.scrollTop
+		this.showLocationDetail = offset > 50
 	}
 }

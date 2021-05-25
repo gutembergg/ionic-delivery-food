@@ -1,1 +1,32 @@
-<p>pages works!</p>
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button fill="solid" shape="round" color="light" routerLink="/home">
+				<ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>{{ deliveryFood$?.name }}</ion-title>
+		<ion-buttons slot="end">
+			<ion-button fill="solid" shape="round" color="light">
+				<ion-icon
+					slot="icon-only"
+					name="share-outline"
+					color="primary"
+				></ion-icon>
+			</ion-button>
+			<ion-button fill="solid" shape="round" color="light">
+				<ion-icon
+					slot="icon-only"
+					name="search-outline"
+					color="primary"
+				></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-text color="secondary">
+		<h1>Detail</h1>
+	</ion-text>
+</ion-content>

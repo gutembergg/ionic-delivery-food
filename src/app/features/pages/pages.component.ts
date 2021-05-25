@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from "@angular/core"
+import { Observable } from "rxjs"
+import { ProductsService } from "src/app/services/products/products.service"
 
 @Component({
-  selector: 'app-pages',
-  templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
+	selector: "app-pages",
+	templateUrl: "./pages.component.html",
+	styleUrls: ["./pages.component.scss"]
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent implements OnInit, AfterViewInit {
+	deliveryFood$: any
 
-  constructor() { }
+	constructor(private _productsService: ProductsService) {}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		this._productsService
+			.getRestaurant()
+			.subscribe((res) => (this.deliveryFood$ = res))
+	}
 
+	ngAfterViewInit() {}
 }

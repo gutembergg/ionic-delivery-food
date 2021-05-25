@@ -4,7 +4,8 @@ import { HttpClientModule } from "@angular/common/http"
 
 import { AppRoutingModule } from "./app-routing.module"
 import { AppComponent } from "./app.component"
-import { IonicModule } from "@ionic/angular"
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular"
+import { RouteReuseStrategy } from "@angular/router"
 
 @NgModule({
 	declarations: [AppComponent],
@@ -14,7 +15,7 @@ import { IonicModule } from "@ionic/angular"
 		IonicModule.forRoot(),
 		HttpClientModule
 	],
-	providers: [],
+	providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

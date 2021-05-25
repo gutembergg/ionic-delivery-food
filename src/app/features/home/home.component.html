@@ -4,7 +4,11 @@
 	</ion-toolbar>
 </ion-header> -->
 
-<ion-content [appHideHeadre]="hideheader">
+<ion-content
+	[scrollEvents]="true"
+	[appHideHeadre]="hideheader"
+	(ionScroll)="onScroll($event)"
+>
 	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
 		<ion-refresher-content></ion-refresher-content>
 	</ion-refresher>
@@ -29,6 +33,12 @@
 
 	<ion-row class="sticky-row">
 		<ion-col size="10">
+			<ion-text
+				class="ion-padding-start"
+				color="mediun"
+				[ngClass]="{'location-visible ': showLocationDetail,  'location-hidden': !showLocationDetail}"
+				>London
+			</ion-text>
 			<ion-searchbar
 				placeholder="Dishes, restaurants or cuisines"
 			></ion-searchbar>
@@ -55,7 +65,12 @@
 	<ion-text color="dark"><b style="padding-left: 10px">Featured</b></ion-text>
 
 	<ion-slides [options]="featuredSlideOpts">
-		<ion-slide *ngFor="let item of featured$" class="futered_slides">
+		<ion-slide
+			*ngFor="let item of featured$"
+			class="futered_slides"
+			[routerLink]="['/pages']"
+			routerLinkActive="router-link-active"
+		>
 			<ion-img [src]="item.img"></ion-img>
 
 			<div class="info">

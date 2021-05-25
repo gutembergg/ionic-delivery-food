@@ -17,4 +17,10 @@ export class ProductsService {
 			.get(localListProducts)
 			.pipe(tap((product) => console.log("products: ", product)))
 	}
+
+	getRestaurant() {
+		return this._http
+			.get<any>("https://devdactic.fra1.digitaloceanspaces.com/foodui/1.json")
+			.pipe(tap((res) => console.log("retaurant: ", res)))
+	}
 }

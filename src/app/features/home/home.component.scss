@@ -40,3 +40,17 @@ ion-content {
 ion-refresher {
 	top: calc(env(safe-area-inset-top) + 50px);
 }
+
+ion-searchbar {
+	--icon-color: var(--ion-color-medium);
+}
+
+.location-visible {
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.location-hidden {
+	opacity: 0;
+	transition: 0.5s;
+}
