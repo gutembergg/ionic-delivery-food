@@ -1,12 +1,12 @@
-<ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
+<ion-header class="ion-no-border">
+	<ion-toolbar #toolBar>
+		<ion-buttons collapse="true" slot="start">
 			<ion-button fill="solid" shape="round" color="light" routerLink="/home">
 				<ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 		<ion-title>{{ deliveryFood$?.name }}</ion-title>
-		<ion-buttons slot="end">
+		<ion-buttons collapse="true" slot="end">
 			<ion-button fill="solid" shape="round" color="light">
 				<ion-icon
 					slot="icon-only"
@@ -25,8 +25,115 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-	<ion-text color="secondary">
-		<h1>Detail</h1>
+<ion-content
+	[fullscreen]="true"
+	scrollEvents="true"
+	[appHeaderBold]="toolBar"
+	[appParallax]="img"
+>
+	<div
+		#img
+		class="header-image"
+		[style.background-image]="'url(' + deliveryFood$?.img + ')'"
+	></div>
+
+	<ion-text color="dark">
+		<h1>{{ deliveryFood$?.name }}</h1>
 	</ion-text>
+
+	<div *ngIf="deliveryFood$">
+		<ion-row>
+			<ion-col size="12" class="light-bg ion-padding-start">
+				<ion-icon name="star" color="primary"></ion-icon>
+				<ion-text color="primary"> {{ deliveryFood$.rating }} </ion-text>
+				<ion-text color="medium">
+					{{ deliveryFood$.ratings }}
+					<span *ngFor="let item of deliveryFood$.tags | slice:0:3">
+						. {{ item }}</span
+					>
+				</ion-text>
+			</ion-col>
+			<ion-col size="12" class="light-bg ion-padding-start">
+				<ion-icon name="location-outline" color="medium"></ion-icon>
+				<ion-text> {{ deliveryFood$.distance }} </ion-text>
+			</ion-col>
+			<ion-col size="12" class="light-bg ion-padding">
+				<ion-badge color="danger">
+					<ion-icon name="pricetag-outline"></ion-icon>
+					Meal Deals
+				</ion-badge>
+			</ion-col>
+			<div>Description...</div>
+			<ion-col size="12" class="ion-no-padding">
+				<ion-item
+					(click)="deliveryFood$.expanded = !deliveryFood$.expanded"
+					lines="full"
+				>
+					<ion-label class="ion-text-wrap" [hidden]="!deliveryFood$.expanded">
+						{{ deliveryFood$?.about }}
+					</ion-label>
+				</ion-item>
+			</ion-col>
+			<ion-col size="12" class="light-bg">
+				<ion-row class="ion-align-items-center">
+					<ion-col size="1">
+						<ion-icon color="medium" name="location-outline"></ion-icon>
+					</ion-col>
+					<ion-col size="10">
+						<ion-label
+							>Restaurant info
+							<p>Map, allergene ad hygiene rating</p>
+						</ion-label>
+					</ion-col>
+					<ion-col size="1">
+						<ion-icon color="primary" name="chevron-forward"></ion-icon>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
+	<div *ngIf="deliveryFood$" class="ion-padding">
+		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
+		these cannot be made once your order is received.
+	</div>
 </ion-content>

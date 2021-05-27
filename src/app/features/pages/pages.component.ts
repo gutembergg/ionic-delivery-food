@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit } from "@angular/core"
-import { Observable } from "rxjs"
 import { ProductsService } from "src/app/services/products/products.service"
 
 @Component({
