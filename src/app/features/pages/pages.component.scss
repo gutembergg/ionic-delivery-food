@@ -21,6 +21,10 @@ ion-toolbar {
 	}
 }
 
+.meal-row {
+	padding-bottom: 0px;
+}
+
 .light-bg {
 	background: #ffffff;
 }
@@ -43,7 +47,7 @@ ion-toolbar {
 }
 
 ion-list-header {
-	--background: #f1f1f1;
+	--background: #fff;
 }
 
 ion-list {
@@ -77,4 +81,8 @@ ion-slides {
 	--color: #fff;
 	--border-radius: 30px;
 	font-weight: 600;
+}
+
+.title-main {
+	opacity: 0;
 }

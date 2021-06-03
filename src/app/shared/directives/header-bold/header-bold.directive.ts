@@ -17,14 +17,12 @@ export class HeaderBoldDirective implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.toolBar = this.toolBar.el
-		console.log("------------->", this.toolBar)
 	}
 
 	@HostListener("ionScroll", ["$event"]) onScrollChange($event: any) {
 		const scrollTop = $event.detail.scrollTop
 
 		if (scrollTop > 250) {
-			console.log("scroll: ", scrollTop)
 			this._renderer.setStyle(this.toolBar, "background", "white")
 		} else {
 			this._renderer.setStyle(this.toolBar, "background", "transparent")

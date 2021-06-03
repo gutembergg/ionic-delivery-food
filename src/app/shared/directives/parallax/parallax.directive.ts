@@ -13,7 +13,6 @@ export class ParallaxDirective {
 
 	@HostListener("ionScroll", ["$event"]) onScrollChange($event: any) {
 		const scrollTop = $event.detail.scrollTop
-		console.log("parallax: ", -scrollTop)
 
 		if (scrollTop > 0) {
 			this.moveImage = scrollTop / 1.6
