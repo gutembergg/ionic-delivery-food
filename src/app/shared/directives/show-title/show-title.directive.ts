@@ -1,6 +1,7 @@
 import {
 	AfterViewInit,
 	Directive,
+	ElementRef,
 	HostListener,
 	Input,
 	Renderer2
@@ -13,7 +14,11 @@ import { DomController } from "@ionic/angular"
 export class ShowTitleDirective implements AfterViewInit {
 	@Input("appShowTitle") title: any
 
-	constructor(private renderer: Renderer2, private domCtrl: DomController) {}
+	constructor(
+		private renderer: Renderer2,
+		private domCtrl: DomController,
+		private elementRef: ElementRef
+	) {}
 
 	ngAfterViewInit() {
 		this.title = this.title.el
@@ -23,6 +28,8 @@ export class ShowTitleDirective implements AfterViewInit {
 		const scroll = $event.detail.scrollTop
 
 		if (scroll > 120) {
+			/* this.renderer.setStyle(this.title, "opacity", 1) */
+
 			this.domCtrl.write(() => {
 				this.renderer.setStyle(this.title, "opacity", 1)
 			})

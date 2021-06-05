@@ -31,6 +31,7 @@
 	[appHeaderBold]="toolBar"
 	[appParallax]="img"
 	[appShowTitle]="title"
+	(ionScroll)="onScroll($event)"
 >
 	<div
 		#img
@@ -96,6 +97,20 @@
 	<div *ngIf="deliveryFood$" class="ion-padding">
 		Please do not call {{ deliveryFood$.name }} for any amends to your order, as
 		these cannot be made once your order is received.
+	</div>
+
+	<div slot="fixed">
+		<ion-slides
+			[options]="categoryOptions"
+			*ngIf="deliveryFood$"
+			[ngClass]="{'slides-visible': categorySlidesVisible, 'slides-hidden': !categorySlidesVisible}"
+		>
+			<ion-slide *ngFor="let entry of deliveryFood$.food; let i = index;">
+				<ion-button fill="clear" (click)="onClick(i)"
+					>{{ entry.category }}</ion-button
+				>
+			</ion-slide>
+		</ion-slides>
 	</div>
 
 	<ion-list *ngFor="let entry of deliveryFood$?.food">
