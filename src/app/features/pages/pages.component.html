@@ -106,7 +106,10 @@
 			[ngClass]="{'slides-visible': categorySlidesVisible, 'slides-hidden': !categorySlidesVisible}"
 		>
 			<ion-slide *ngFor="let entry of deliveryFood$.food; let i = index;">
-				<ion-button fill="clear" (click)="onClick(i)"
+				<ion-button
+					[class.active-category]="activeCategory == i"
+					fill="clear"
+					(click)="onClick(i)"
 					>{{ entry.category }}</ion-button
 				>
 			</ion-slide>

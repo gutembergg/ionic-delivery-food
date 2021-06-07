@@ -6,9 +6,10 @@ import {
 	Inject,
 	OnInit,
 	QueryList,
+	ViewChild,
 	ViewChildren
 } from "@angular/core"
-import { IonList, isPlatform } from "@ionic/angular"
+import { IonContent, IonList, IonSlides, isPlatform } from "@ionic/angular"
 import { tap } from "rxjs/operators"
 import { ProductsService } from "src/app/services/products/products.service"
 
@@ -29,8 +30,12 @@ export class PagesComponent implements OnInit, AfterViewInit {
 	}
 
 	categorySlidesVisible = false
+	activeCategory = 0
 
 	@ViewChildren(IonList, { read: ElementRef }) lists: QueryList<ElementRef>
+	listElements = []
+	@ViewChild(IonContent) content: IonContent
+	@ViewChild(IonSlides) slides: IonSlides
 
 	constructor(
 		private _productsService: ProductsService,
@@ -51,15 +56,38 @@ export class PagesComponent implements OnInit, AfterViewInit {
 		)
 	}
 
-	ngAfterViewInit() {}
-
-	onClick(index) {
-		console.log("ok", index)
+	ngAfterViewInit() {
+		this.lists.changes.subscribe((_) => {
+			this.listElements = this.lists.toArray()
+		})
 	}
 
-	onScroll($event) {
-		const offSet = $event.detail.scrollTop
+	onClick(index: number) {
+		const child = this.listElements[index].nativeElement
+		this.content.scrollToPoint(0, child.offsetTop - 120, 1000)
+	}
 
+	onScroll($event: CustomEvent) {
+		const offSet = $event.detail.scrollTop
 		this.categorySlidesVisible = offSet > 500
+
+		for (let i = 0; i < this.listElements.length; i++) {
+			const item = this.listElements[i].nativeElement
+			if (this.isElementInViewport(item)) {
+				this.activeCategory = i
+				this.slides.slideTo(i, 1000)
+				break
+			}
+		}
+	}
+
+	isElementInViewport(el: any) {
+		const rect = el.getBoundingClientRect()
+
+		return (
+			rect.top >= 0 &&
+			rect.bottom <=
+				(window.innerHeight || document.documentElement.clientHeight)
+		)
 	}
 }
